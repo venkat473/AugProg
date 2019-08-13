@@ -16,15 +16,15 @@ import org.testng.annotations.Test;
 
 public class ITestResultProg
 {
-	WebDriver d;
+	WebDriver driver;
 	@Test
 	public void login()
 	{
 		System.setProperty("webdriver.chrome.driver","E:\\chromedriver_win32\\chromedriver.exe");
-		d=new ChromeDriver();
-		d.manage().window().maximize();
-		d.get("http://facebook.com");
-		d.findElement(By.xpath("//*[@name='email']")).sendKeys("krishnav373@gmail.com");
+		driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("http://facebook.com");
+		driver.findElement(By.xpath("//*[@name='email']")).sendKeys("krishnav373@gmail.com");
 	}
 	
 	@BeforeMethod
@@ -41,7 +41,7 @@ public class ITestResultProg
 		
 		if(ITestResult.FAILURE==result.getStatus())
 		{
-			TakesScreenshot ts=(TakesScreenshot)d;
+			TakesScreenshot ts=(TakesScreenshot)driver;
 			File f1=ts.getScreenshotAs(OutputType.FILE);
 			File f2=new File("E:\\mohan.jpeg");
 			FileHandler.copy(f1,f2);
@@ -49,7 +49,7 @@ public class ITestResultProg
 		}
 		else if(ITestResult.SUCCESS==result.getStatus())
 		{
-			TakesScreenshot ts=(TakesScreenshot)d;
+			TakesScreenshot ts=(TakesScreenshot)driver;
 			File f1=ts.getScreenshotAs(OutputType.FILE);
 			File f2=new File("E:\\mohan.jpeg");
 			FileHandler.copy(f1,f2);
